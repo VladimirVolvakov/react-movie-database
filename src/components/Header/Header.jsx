@@ -1,5 +1,7 @@
+// Images:
 import RMDBLogo from '../../assets/react-movie-logo.svg';
 import TMDBLogo from '../../assets/tmdb_logo.svg';
+// Styles:
 import { Wrapper, Content, Logo, TheMovieDatabaseLogo } from './Header.styles';
 
 const Header = () => {
