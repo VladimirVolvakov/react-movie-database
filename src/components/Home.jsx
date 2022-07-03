@@ -6,6 +6,7 @@ import { BACKDROP_SIZE, POSTER_SIZE, IMAGE_BASE_URL } from '../config';
 // API:
 import API from '../API';
 // Component:
+import Grid from './Grid/Grid';
 import HeroImage from './HeroImage/HeroImage';
 // Image:
 import NoImage from '../assets/no_image.jpg';
@@ -23,6 +24,11 @@ const Home = () => {
             title={`${state.results[0].original_title}`}
           />
       }
+      <Grid header='Popular Movies'>
+        { state.results.map((movie, index) => (
+          <div key={index}>{movie.title}</div>
+        )) }
+      </Grid>
     </>
   );
 };
