@@ -6,7 +6,7 @@ import API from '../API';
 // Create an initial state:
 const initialState = {
   page: 0,
-  resuls: [],
+  results: [],
   total_pages: 0,
   total_results: 0
 };

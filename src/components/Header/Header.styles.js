@@ -17,7 +17,7 @@ export const Content = styled.div`
 export const Logo = styled.img`
   width: 200px;
 
-  @media screen and (max-width: 768px) {
+  @media all and (max-width: 768px) {
     width: 150px;
   }
 `;
@@ -25,7 +25,7 @@ export const Logo = styled.img`
 export const TheMovieDatabaseLogo = styled.img`
   width: 100px;
 
-  @media screen and (max-width: 768px) {
+  @media all and (max-width: 768px) {
     width: 70px;
   }
 `;
