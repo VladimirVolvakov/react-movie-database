@@ -1,5 +1,6 @@
-// Hook:
+// Hooks:
 import { useEffect, useState } from 'react';
+import { useHomeFetchMovies } from '../hooks/useHomeFetchMovies';     //
 // Config:
 import { BACKDROP_SIZE, POSTER_SIZE, IMAGE_BASE_URL } from '../config';
 // API:
@@ -8,32 +9,9 @@ import API from '../API';
 import NoImage from '../assets/no_image.jpg';
 
 const Home = () => {
-  const [state, setState] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  // Get movies from the DB:
-  const fetchMovies = async (page, searchTerm = '') => {
-    try {
-      setIsLoading(true);
-
-      const movies = await API.fetchMovies(searchTerm, page);
-
-      setState(prevState => ({
-        ...movies,
-        results: (page > 1) ? [...prevState.results, ...movies.results] : [...movies.results]
-      }));
-    } catch (error) {
-      setError(true);
-    }
-
-    setIsLoading(false);
-  };
-
-  // Initial render of movies:
-  useEffect(() => {
-    fetchMovies(1);
-  }, []);
+  // Take pieces of state from custom hook:
+  const { state, isLoading, error } = useHomeFetchMovies();
+  console.log(state);
 
   return (
     <div>Home</div>
