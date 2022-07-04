@@ -1,3 +1,4 @@
+// Styles:
 import { Image } from "./Thumbnail.styles";
 
 const Thumbnail = ({ imageSrc, movieId, isClickable }) => {
