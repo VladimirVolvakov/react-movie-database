@@ -8,6 +8,7 @@ import API from '../API';
 // Component:
 import Grid from './Grid/Grid';
 import HeroImage from './HeroImage/HeroImage';
+import Thumbnail from './Thumbnail/Thumbnail';
 // Image:
 import NoImage from '../assets/no_image.jpg';
 
@@ -26,7 +27,16 @@ const Home = () => {
       }
       <Grid header='Popular Movies'>
         { state.results.map((movie, index) => (
-          <div key={index}>{movie.title}</div>
+          <Thumbnail
+            key={index}
+            isClickable
+            imageSrc={
+              movie.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}/${movie.poster_path}`
+                : NoImage
+            }
+            movieId={movie.id}
+          />
         )) }
       </Grid>
     </>
