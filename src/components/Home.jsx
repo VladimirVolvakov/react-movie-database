@@ -2,9 +2,10 @@
 import { useHomeFetchMovies } from '../hooks/useHomeFetchMovies';
 // Config:
 import { BACKDROP_SIZE, POSTER_SIZE, IMAGE_BASE_URL } from '../config';
-// Component:
+// Components:
 import Grid from './Grid/Grid';
 import HeroImage from './HeroImage/HeroImage';
+import LoadMoreButton from './LoadMoreButton/LoadMoreButton';
 import SearchBar from './SearchBar/SearchBar';
 import { Spinner } from './Spinner/Spinner.styles';
 import Thumbnail from './Thumbnail/Thumbnail';
@@ -13,11 +14,11 @@ import NoImage from '../assets/no_image.jpg';
 
 const Home = () => {
   // Take pieces of state from custom hook:
-  const { state, isLoading, error, searchQuery, setSearchQuery } = useHomeFetchMovies(); //
+  const { state, isLoading, error, searchQuery, setSearchQuery } = useHomeFetchMovies();
 
   return (
     <>
-      { !searchQuery                //
+      { !searchQuery
         && state.results[0]
         && <HeroImage
             image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
@@ -26,7 +27,7 @@ const Home = () => {
           />
       }
       <SearchBar setSearchQuery={setSearchQuery} />
-      <Grid header={ !searchQuery ? 'Popular Movies' : 'Search Result'}>    //
+      <Grid header={ !searchQuery ? 'Popular Movies' : 'Search Result'}>
         { state.results.map((movie, index) => (
           <Thumbnail
             key={index}
@@ -40,7 +41,10 @@ const Home = () => {
           />
         )) }
       </Grid>
-      <Spinner />
+      { isLoading && <Spinner /> }
+      { (state.page < state.total_pages) && !isLoading && (
+        <LoadMoreButton text='Load More' />
+      ) }
     </>
   );
 };
