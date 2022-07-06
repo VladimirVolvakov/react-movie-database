@@ -12,6 +12,7 @@ const initialState = {
 };
 
 export const useHomeFetchMovies = () => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [state, setState] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -40,5 +41,5 @@ export const useHomeFetchMovies = () => {
     fetchMovies(1);
   }, []);
 
-  return { state, isLoading, error };
+  return { state, isLoading, error, setSearchQuery };
 }
