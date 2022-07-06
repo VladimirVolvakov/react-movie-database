@@ -13,11 +13,12 @@ import NoImage from '../assets/no_image.jpg';
 
 const Home = () => {
   // Take pieces of state from custom hook:
-  const { state, isLoading, error, setSearchQuery } = useHomeFetchMovies();
+  const { state, isLoading, error, searchQuery, setSearchQuery } = useHomeFetchMovies(); //
 
   return (
     <>
-      { state.results[0]
+      { !searchQuery                //
+        && state.results[0]
         && <HeroImage
             image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${state.results[0].backdrop_path}`}
             text={`${state.results[0].overview}`}
@@ -25,7 +26,7 @@ const Home = () => {
           />
       }
       <SearchBar setSearchQuery={setSearchQuery} />
-      <Grid header='Popular Movies'>
+      <Grid header={ !searchQuery ? 'Popular Movies' : 'Search Result'}>    //
         { state.results.map((movie, index) => (
           <Thumbnail
             key={index}

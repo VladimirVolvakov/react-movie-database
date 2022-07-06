@@ -18,11 +18,11 @@ export const useHomeFetchMovies = () => {
   const [error, setError] = useState(false);
 
   // Get movies from the DB:
-  const fetchMovies = async (page, searchTerm = '') => {
+  const fetchMovies = async (page, searchQuery = '') => {
     try {
       setIsLoading(true);
 
-      const movies = await API.fetchMovies(searchTerm, page);
+      const movies = await API.fetchMovies(searchQuery, page);
 
       setState(prevState => ({
         ...movies,
@@ -36,10 +36,12 @@ export const useHomeFetchMovies = () => {
     setIsLoading(false);
   };
 
-  // Initial render of movies:
+  // Initial render and search of movies:
   useEffect(() => {
-    fetchMovies(1);
-  }, []);
+    // Wipe the old state before making new search:
+    setState(initialState);
+    fetchMovies(1, searchQuery);
+  }, [searchQuery]);
 
-  return { state, isLoading, error, setSearchQuery };
+  return { state, isLoading, error, searchQuery, setSearchQuery };
 }
