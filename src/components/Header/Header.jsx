@@ -13,9 +13,7 @@ const Header = () => {
         <Link to='/'>
           <Logo src={RMDBLogo} alt='React movie database logo' />
         </Link>
-        <Link to='https://www.themoviedb.org/'>
-          <TheMovieDatabaseLogo src={TMDBLogo} alt='TheMovieDataBase logo' />
-        </Link>
+        <TheMovieDatabaseLogo src={TMDBLogo} alt='TheMovieDataBase logo' />
       </Content>
     </Wrapper>
   );
