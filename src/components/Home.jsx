@@ -14,7 +14,16 @@ import NoImage from '../assets/no_image.jpg';
 
 const Home = () => {
   // Take pieces of state from custom hook:
-  const { state, isLoading, error, searchQuery, setSearchQuery } = useHomeFetchMovies();
+  const { 
+    state, 
+    isLoading, 
+    error, 
+    searchQuery, 
+    setSearchQuery, 
+    setIsLoadingMoreMovies
+  } = useHomeFetchMovies();
+
+  if (error) return (<div>Oops... Something went wrong...</div>);
 
   return (
     <>
@@ -43,7 +52,10 @@ const Home = () => {
       </Grid>
       { isLoading && <Spinner /> }
       { (state.page < state.total_pages) && !isLoading && (
-        <LoadMoreButton text='Load More' />
+        <LoadMoreButton 
+          text='Load More' 
+          callback={() => setIsLoadingMoreMovies(true)}
+        />
       ) }
     </>
   );

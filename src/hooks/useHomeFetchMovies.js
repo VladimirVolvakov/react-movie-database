@@ -16,6 +16,7 @@ export const useHomeFetchMovies = () => {
   const [state, setState] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoadingMoreMovies, setIsLoadingMoreMovies] = useState(false);
 
   // Get movies from the DB:
   const fetchMovies = async (page, searchQuery = '') => {
@@ -40,8 +41,24 @@ export const useHomeFetchMovies = () => {
   useEffect(() => {
     // Wipe the old state before making new search:
     setState(initialState);
+
     fetchMovies(1, searchQuery);
   }, [searchQuery]);
 
-  return { state, isLoading, error, searchQuery, setSearchQuery };
-}
+  // Load more movies:
+  useEffect(() => {
+    if (!isLoadingMoreMovies) return;
+
+    fetchMovies(state.page + 1, searchQuery);
+    setIsLoadingMoreMovies(false);
+  }, [isLoadingMoreMovies, searchQuery, state.page]);
+
+  return { 
+    state, 
+    isLoading, 
+    error, 
+    searchQuery, 
+    setSearchQuery, 
+    setIsLoadingMoreMovies
+  };
+};
