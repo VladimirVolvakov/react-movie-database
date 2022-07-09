@@ -14,11 +14,17 @@ const Movie = () => {
   const { movieId } = useParams();
   const { state: movie, isLoading, error } = useMovieDataFetch(movieId);
 
-  console.log(movie);
+  if (isLoading) {
+    return <Spinner />
+  };
+
+  if (error) {
+    return <div>Oops... Something went wrong...</div>
+  }
 
   return (
     <>
-      <div>Movie</div>
+      <BreadCrumb movieTitle={movie.original_title} />
     </>
   );
 };
