@@ -1,4 +1,5 @@
 // Components:
+import BreadCrumb from './BreadCrumb/BreadCrumb';         //
 import Grid from './Grid/Grid';
 import Spinner from './Spinner/Spinner';
 // Image:
@@ -12,6 +13,8 @@ import { useParams } from 'react-router-dom';
 const Movie = () => {
   const { movieId } = useParams();
   const { state: movie, isLoading, error } = useMovieDataFetch(movieId);
+
+  console.log(movie);
 
   return (
     <>
