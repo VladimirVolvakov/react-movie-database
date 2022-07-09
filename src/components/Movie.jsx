@@ -1,6 +1,7 @@
 // Components:
-import BreadCrumb from './BreadCrumb/BreadCrumb';         //
+import BreadCrumb from './BreadCrumb/BreadCrumb';
 import Grid from './Grid/Grid';
+import MovieInfo from './MovieInfo/MovieInfo';
 import Spinner from './Spinner/Spinner';
 // Image:
 import NoImage from '../assets/no_image.jpg';
@@ -20,11 +21,12 @@ const Movie = () => {
 
   if (error) {
     return <div>Oops... Something went wrong...</div>
-  }
+  };
 
   return (
     <>
       <BreadCrumb movieTitle={movie.original_title} />
+      <MovieInfo movie={movie} />
     </>
   );
 };

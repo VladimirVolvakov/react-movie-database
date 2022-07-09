@@ -25,4 +25,8 @@ export const Content = styled.div`
       font-size: var(--fontSmall);
     }
   }
+
+  a {
+    text-decoration: none;
+  }
 `;
