@@ -23,17 +23,21 @@ const MovieInfo = ({ movie }) => {
           <h1>{ movie.title }</h1>
 
           <h3>GENRE{ movie.genres.length > 1 ? 'S': '' }</h3>
-          { movie.genres.map((genre, index) => (<span key={index}>{genre.name}, </span>)) }
+          { movie.genres.map((genre, index) => (
+            <span key={index}>
+              {genre.name}{movie.genres[index] === movie.genres[movie.genres.length - 1] ? '' : ', '} 
+            </span>
+          )) }
 
           <h3>PLOT</h3>
           <p>{ movie.overview }</p>
 
-          <div className='directors'>
+          <div className='rating-and-directors'>
             <div>
               <h3>RATING</h3>
               <div className="rating">{ movie.vote_average }</div>
             </div>
-            <div className='director'>
+            <div className='directors'>
               <h3>DIRECTOR{ movie.directors.length > 1 ? 'S' : '' }</h3>
               { movie.directors.map((director, index) => (<p key={index}>{director.name}</p>)) }
             </div>
