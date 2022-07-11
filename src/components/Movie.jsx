@@ -1,4 +1,5 @@
 // Components:
+import Actor from './Actor/Actor';
 import BreadCrumb from './BreadCrumb/BreadCrumb';
 import Grid from './Grid/Grid';
 import MovieInfo from './MovieInfo/MovieInfo';
@@ -33,6 +34,19 @@ const Movie = () => {
         budget={movie.budget}
         revenue={movie.revenue}
       />
+      <Grid header='Actors'>
+        { movie.actors.map((actor, index) => (
+          <Actor 
+            key={index} 
+            name={actor.name} 
+            character={actor.character} 
+            imageUrl={ actor.profile_path 
+              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}` 
+              : NoImage
+            } 
+          />
+        ))}
+      </Grid>
     </>
   );
 };
