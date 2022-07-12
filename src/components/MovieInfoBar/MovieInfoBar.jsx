@@ -3,7 +3,7 @@ import { Wrapper, Content } from './MovieInfoBar.styles';
 // Helper functions:
 import { calculateTime, convertMoney } from '../../helpers';
 // Props type check:
-import PropTypes from 'prop-types';                 //
+import PropTypes from 'prop-types';
 
 const MovieInfoBar = ({ time, budget, revenue}) => {
   return (
@@ -23,10 +23,10 @@ const MovieInfoBar = ({ time, budget, revenue}) => {
   );
 };
 
-MovieInfoBar.propTypes = {//
-  time: PropTypes.number,//
-  budget: PropTypes.number,//
-  revenue: PropTypes.number,//
-};//
+MovieInfoBar.propTypes = {
+  time: PropTypes.number,
+  budget: PropTypes.number,
+  revenue: PropTypes.number,
+};
 
 export default MovieInfoBar;
