@@ -6,6 +6,8 @@ import { Wrapper, Content, Text } from './MovieInfo.styles';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 // Image:
 import NoImage from '../../assets/no_image.jpg';
+// Props type check:
+import PropTypes from 'prop-types';
 
 const MovieInfo = ({ movie }) => {
   return (
@@ -46,6 +48,10 @@ const MovieInfo = ({ movie }) => {
       </Content>
     </Wrapper>
   );
+};
+
+MovieInfo.propTypes = {
+  movie: PropTypes.object,
 };
 
 export default MovieInfo;
