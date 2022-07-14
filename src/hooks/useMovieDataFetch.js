@@ -1,7 +1,7 @@
 // Hooks:
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 // API:
-import API from "../API";
+import API from '../API';
 
 export const useMovieDataFetch = (movieId) => {
   const [state, setState] = useState({});

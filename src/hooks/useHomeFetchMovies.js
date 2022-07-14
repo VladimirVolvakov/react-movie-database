@@ -2,8 +2,6 @@
 import { useEffect, useState } from 'react';
 // API:
 import API from '../API';
-// Helper function:
-import { isPersistedState } from '../helpers';
 
 // Create an initial state:
 const initialState = {
@@ -41,17 +39,6 @@ export const useHomeFetchMovies = () => {
 
   // Initial render and search of movies:
   useEffect(() => {
-    // Check if there is a session state before retrieving anything from API
-    // (if search is not being provided) & set state from session storage:
-    if (!searchQuery) {
-      const sessionState = isPersistedState('homeState');
-
-      if (sessionState) {
-        setState(sessionState);
-        return;
-      };
-    };
-    
     // Wipe the old state before making new search:
     setState(initialState);
 
@@ -65,11 +52,6 @@ export const useHomeFetchMovies = () => {
     fetchMovies(state.page + 1, searchQuery);
     setIsLoadingMoreMovies(false);
   }, [isLoadingMoreMovies, searchQuery, state.page]);
-
-  // Write state to session storage:
-  useEffect(() => {
-    if (!searchQuery) sessionStorage.setItem('homeState', JSON.stringify(state));
-  }, [searchQuery, state]);
 
   return { 
     state, 
